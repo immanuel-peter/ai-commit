@@ -46,7 +46,7 @@ RESPONSE=$(curl -s "https://api.openai.com/v1/responses" \
 
 # Extract commit message from response
 if command -v jq > /dev/null; then
-    COMMIT_MSG=$(echo "$RESPONSE" | jq -r '.output[0].content[0]')
+    COMMIT_MSG=$(echo "$RESPONSE" | jq -r '.output[0].content[0].text')
 else
     echo "Could not parse response"
     exit 1
