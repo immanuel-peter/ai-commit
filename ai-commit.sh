@@ -52,12 +52,12 @@ else
     exit 1
 fi
 
-# Show user the message and confirm/edit
+# Show user the message and ask if they're ok with it
 echo -e "\nSuggested commit message:\n"
 echo "$COMMIT_MSG"
-echo -e "\nEdit commit message? (y/n): "
-read -r EDIT_CHOICE
-if [[ "$EDIT_CHOICE" =~ ^[Yy]$ ]]; then
+echo -e "\nAre you ok with this commit message? (y/n): "
+read -r OK_CHOICE
+if [[ "$OK_CHOICE" =~ ^[Nn]$ ]]; then
     TMP_FILE=$(mktemp)
     echo "$COMMIT_MSG" > "$TMP_FILE"
     ${EDITOR:-nano} "$TMP_FILE"
