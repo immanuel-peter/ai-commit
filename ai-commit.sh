@@ -32,7 +32,7 @@ EOF
 json_payload=$(jq -n \
     --arg prompt "$PROMPT" \
     '{
-        "model": "gpt-4o-mini",
+        "model": "gpt-4.1-nano",
         "input": $prompt
     }'
 )
