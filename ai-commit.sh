@@ -24,7 +24,7 @@ fi
 
 # Create prompt for gpt-4.1-nano
 read -r -d '' PROMPT <<EOF
-Generate a concise and clear git commit message (max 60 chars subject, plus optional detailed body) describing the staged changes. Do not add fluff like "**Commit Message**" or "**Optional detailed body**". Just describe the changes.
+Generate a concise and clear git commit message (max 60 chars subject, plus optional detailed body) describing the staged changes. The detailed body must use bullets. Do not add fluff like "**Commit Message**" or "**Optional detailed body**". Just describe the changes.
 $DIFF
 EOF
 
