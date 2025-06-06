@@ -11,6 +11,8 @@ fi
 # Check for staged changes
 if ! git diff --cached --quiet; then
     DIFF=$(git diff --cached)
+    # Remove all control characters except \t (tab) and \n (newline)
+    SAFE_DIFF=$(echo "$DIFF" | tr -d '\000-\010\013\014\016-\037')
 else
     echo "No staged changes"
     exit 1
@@ -24,8 +26,14 @@ fi
 
 # Create prompt for gpt-4.1-nano
 read -r -d '' PROMPT <<EOF
-Generate a concise and clear git commit message (max 60 chars subject, plus optional detailed body) describing the staged changes. The detailed body must use bullets. Do not add fluff like "**Commit Message**" or "**Optional detailed body**". Just describe the changes.
-$DIFF
+Write a git commit message for the following staged changes.
+Format:
+- The first line is a short header (max 50 characters).
+- Leave a blank line after the header.
+- Then, provide a bulleted list describing each significant change.
+
+Changes:
+$SAFE_DIFF
 EOF
 
 # Payload for OpenAI API
