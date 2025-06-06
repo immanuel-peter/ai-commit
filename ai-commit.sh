@@ -73,7 +73,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Push to remote
-git push
+git push origin main
 if [ $? -ne 0 ]; then
     echo "git push failed."
     exit 1
